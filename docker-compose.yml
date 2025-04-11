@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  apache:
+    image: php:8.2-apache
+    container_name: apache_php
+    ports:
+      - "80:80"
+    volumes:
+      - ./www:/var/www
+      - ./apache-config:/etc/apache2/sites-enabled
+    environment:
+      APACHE_DOCUMENT_ROOT: /var/www/html/public
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: my_database
+      MYSQL_USER: devuser
+      MYSQL_PASSWORD: devpass
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    depends_on:
+      - mysql  # Asegúrate de que coincida con el nombre de tu servicio MySQL
+    ports:
+      - "8085:80"  # Accede en http://localhost:8080
+    environment:
+      PMA_HOST: mysql  # Nombre del servicio MySQL en docker-compose
+      PMA_USER: root   # Usuario de MySQL (o el que configuraste)
+      PMA_PASSWORD: rootpass  # Contraseña del usuario (cambia esto)
+      PMA_PORT: 3306
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+
