@@ -14,7 +14,9 @@ Creado un Ubuntu server en Proxmox local de casa.
 Instalado en la maquina del Proyecto2:
 
   -SSH.SERVER: para conexion remota por MobaXTerm
+  
   -Docker: para crear los containers necesario con todas las herramientas
+  
   
     -Portainer: para ver visualmente todos los otros contenedores.
     -Apache PHP 8.2: donde estara la pagina html.
