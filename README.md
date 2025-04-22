@@ -2,9 +2,14 @@ Github para Proyecto 2 del Master de Ciberseguridad de Stucom
 -Kelvin
 
 Creado un Ubuntu server en Proxmox local de casa.
+
 1000- Proyecto2
+
   ip: 192.168.1.160
+  
   Stucom.2024
+  
+
 
 Instalado en la maquina del Proyecto2:
 
