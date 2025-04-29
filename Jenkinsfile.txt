@@ -19,6 +19,7 @@ pipeline {
                         sonar-scanner \
                         -Dsonar.projectKey=pipeline01 \
                         -Dsonar.sources=vulnerabilities \
+                        -Dsonar.token=sqa_26029c8f4beb213fb3bdbb679895edadf86d8387 \
                         -Dsonar.php.version=8.0
                     '''
                 }
