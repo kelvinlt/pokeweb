@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         SONARQUBE_SERVER = 'SonarQube'
-        PATH = "/opt/sonar-scanner/bin:${env.PATH}"
     }
 
     stages {
@@ -15,13 +14,16 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv("${SONARQUBE_SERVER}") {
-                    sh '''
-                        sonar-scanner \
-                        -Dsonar.projectKey=pipeline01 \
-                        -Dsonar.sources=/var/jenkins_home/workspace/test1 \
-                        -Dsonar.token=sqa_1d1abb5af1d332b99ea6fa12dec8c099b53a5985 \
-                        -Dsonar.php.version=8.0
-                    '''
+                    script {
+                        def scannerHome = tool 'SonarQubeScanner'  // Name from "Manage Jenkins > Tools"
+                        sh """
+                            ${scannerHome}/bin/sonar-scanner \
+                            -Dsonar.projectKey=pipeline01 \
+                            -Dsonar.sources=. \
+                            -Dsonar.token=sqa_1d1abb5af1d332b99ea6fa12dec8c099b53a5985 \
+                            -Dsonar.php.version=8.0
+                        """
+                    }
                 }
             }
         }
