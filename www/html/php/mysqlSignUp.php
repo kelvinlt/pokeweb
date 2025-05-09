@@ -41,7 +41,7 @@ if (!empty($_POST)) {
             $stmt->bind_param("s", $id);
             $stmt->execute();
 
-            header('Location: ../html/signin.php');
+            header('Location: ../signin.php');
             exit();
         }
         $stmt->close();
